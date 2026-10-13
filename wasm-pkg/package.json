@@ -1,0 +1,21 @@
+{
+  "name": "virtual-obsidian-core",
+  "type": "module",
+  "description": "Deterministic state engine for virtual-obsidian",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Chazutsu/virtual-obsidian"
+  },
+  "files": [
+    "core_bg.wasm",
+    "core.js",
+    "core.d.ts"
+  ],
+  "main": "core.js",
+  "types": "core.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
