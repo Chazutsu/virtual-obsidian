@@ -12,10 +12,10 @@ export {
   runUxScenarios,
 } from "./ux-measurement.js";
 
-export async function initializeVirtualObsidian() {
+export async function initializeVirtualObsidian(wasmUrl) {
   if (CoreConstructor) return;
   coreInitialization ??= import("../wasm-pkg/core.js").then(async (module) => {
-    await module.default();
+    await module.default(wasmUrl);
     CoreConstructor = module.VirtualObsidianCore;
   });
   await coreInitialization;

@@ -16,7 +16,7 @@ const runtime = createVirtualObsidian({
 const { app } = runtime;
 ```
 
-`initializeVirtualObsidian()`はテストホスト起動時に一度だけ呼ぶ。以後の`createVirtualObsidian()`とObsidian互換APIは同期的に組み立てられる。未初期化時はNode単体テスト用のJSエンジンへフォールバックする。
+`initializeVirtualObsidian()`はテストホスト起動時に一度だけ呼ぶ。bundlerがWasmの相対URLを維持できない場合は、`initializeVirtualObsidian("/assets/core_bg.wasm")`のように配信URLを明示する。以後の`createVirtualObsidian()`とObsidian互換APIは同期的に組み立てられる。未初期化時はNode単体テスト用のJSエンジンへフォールバックする。
 
 ## 対象
 
@@ -59,10 +59,4 @@ const result = await runUxScenario({
 
 `setup(fixture)`には`createVirtualObsidian`やPlaywright driverを渡せる。操作callbackの実行時間は`elapsedMs`へ混ぜず、`durationMs`だけを加算するため、CI負荷で結果が揺れない。`attempt`は失敗を記録して復帰操作を続行する用途である。`assertIdentity`はTask ID、Episode ID、Note pathなど、画面遷移や並べ替えで変化してはいけない同一性を検査する。
 
-`docs/product-ux-validation.md`に定義した代表9経路の計測はルートで実行できる。
-
-```sh
-pnpm ux:measure
-```
-
-結果は`artifacts/ux-measurements/report.json`と`report.md`へ出力される。いずれかのthreshold超過時は終了コード1になる。
+計測結果は`formatUxReportJson`または`formatUxReportMarkdown`でCI成果物へ変換できる。threshold超過時は`UxThresholdError`になるため、利用側のtest runnerで失敗として扱える。

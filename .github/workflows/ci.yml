@@ -29,6 +29,8 @@ jobs:
           tool: wasm-pack
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
+      - run: git diff --exit-code -- wasm-pkg
+      - run: pnpm verify:package
       - run: pnpm test
       - run: pnpm lint
       - run: pnpm format:check

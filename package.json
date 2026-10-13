@@ -2,6 +2,8 @@
   "name": "virtual-obsidian",
   "version": "0.1.0",
   "private": true,
+  "packageManager": "pnpm@10.7.0",
+  "engines": { "node": ">=24" },
   "description": "A lightweight stateful Obsidian runtime for plugin UI and integration tests",
   "license": "MIT",
   "repository": "github:Chazutsu/virtual-obsidian",
@@ -28,6 +30,7 @@
   "scripts": {
     "build": "pnpm build:rust && node --check src/index.mjs && node --check src/ux-measurement.mjs && node --check src/sample-scenarios.mjs",
     "build:rust": "wasm-pack build --target web --out-dir wasm-pkg --out-name core && node scripts/prepare-wasm-output.mjs",
+    "verify:package": "node scripts/verify-package.mjs",
     "test": "pnpm test:rust && node --test tests/*.test.mjs",
     "test:rust": "cargo test",
     "typecheck": "tsc --noEmit",

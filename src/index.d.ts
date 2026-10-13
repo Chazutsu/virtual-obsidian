@@ -128,4 +128,4 @@ export class VirtualFileManager {
 }
 
 export function createVirtualObsidian(options?: VirtualObsidianOptions): VirtualObsidianRuntime;
-export function initializeVirtualObsidian(): Promise<void>;
+export function initializeVirtualObsidian(wasmUrl?: string | URL): Promise<void>;
