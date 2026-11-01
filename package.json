@@ -39,8 +39,8 @@
     "format:check": "oxfmt --check src/ tests/"
   },
   "devDependencies": {
-    "oxfmt": "^0.72.0",
-    "oxlint": "^1.48.0",
+    "oxfmt": "^0.75.0",
+    "oxlint": "^1.90.0",
     "typescript": "6.0.3"
   }
 }
